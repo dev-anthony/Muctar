@@ -1,5 +1,5 @@
-import React from 'react'
-import { Mail, MessageCircle, ArrowUpRight } from 'lucide-react'
+import { Mail, ArrowUpRight } from 'lucide-react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 function GithubIcon() {
   return (
@@ -26,17 +26,35 @@ function LinkedinIcon() {
   )
 }
 
+function WhatsappIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.668 14.126c-.387-.194-2.29-1.13-2.646-1.256-.357-.129-.616-.193-.874.193-.258.387-.998 1.255-1.223 1.512-.225.258-.45.29-.837.097-.387-.194-1.633-.602-3.112-1.92-1.15-1.025-1.927-2.29-2.152-2.677-.226-.387-.024-.596.169-.789.174-.173.387-.452.581-.677.193-.226.258-.387.387-.645.129-.258.065-.483-.032-.677-.097-.194-.874-2.096-1.194-2.867-.314-.753-.634-.652-.874-.664-.226-.01-.483 0-.741 0-.258 0-.677.097-1.032.483-.355.387-1.354 1.322-1.354 3.226 0 1.903 1.387 3.74 1.581 4.008.194.258 2.73 4.163 6.612 5.837.923.398 1.643.636 2.204.815.927.296 1.77.254 2.434.153.742-.111 2.29-.936 2.612-1.838.322-.902.322-1.677.225-1.838-.097-.162-.355-.258-.741-.452z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.615C6.292 22.615 1.385 17.708 1.385 12 1.385 6.292 6.292 1.385 12 1.385 17.708 1.385 22.615 6.292 22.615 12c0 5.708-4.907 10.615-10.615 10.615z"/>
+    </svg>
+  )
+}
+
 function Footer() {
+  const { ref, isVisible } = useScrollAnimation()
+
   const socialLinks = [
     { icon: GithubIcon, href: '#', label: 'GitHub' },
     { icon: Mail, href: '#', label: 'Email', isLucide: true },
     { icon: TwitterIcon, href: '#', label: 'Twitter' },
-    { icon: MessageCircle, href: '#', label: 'WhatsApp', isLucide: true },
+    { icon: WhatsappIcon, href: '#', label: 'WhatsApp' },
     { icon: LinkedinIcon, href: '#', label: 'LinkedIn' },
   ]
 
   return (
-    <footer className='mt-20 text-left'>
+    <footer
+      ref={ref}
+      className={`mt-20 text-left transition-all duration-700 transform ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8'
+      }`}
+    >
       <h1 className='font-serif italic text-slate-900 text-2xl wavy-underline'>Connect</h1>
       
       <div className='mt-4 font-ptserif text-slate-900 text-[18px]'>
@@ -62,7 +80,7 @@ function Footer() {
               aria-label={link.label}
               className='text-slate-900 hover:text-slate-600 transition-colors'
             >
-              <Icon size={24} />
+              {link.isLucide ? <Icon size={24} /> : <Icon />}
             </a>
           )
         })}

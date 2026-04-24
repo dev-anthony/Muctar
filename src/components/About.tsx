@@ -1,8 +1,17 @@
-import React from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 function About() {
+  const { ref, isVisible } = useScrollAnimation()
+
   return (
-    <div className='flex-col items-end justify-between mt-4 text-[16px] font-ptserif text-slate-900 gap-'>
+    <div
+      ref={ref}
+      className={`flex-col items-end justify-between mt-4 text-[16px] font-ptserif text-slate-900 gap- transition-all duration-700 transform ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8'
+      }`}
+    >
         <p className="leading-relaxed">
             Hi there, I’m Muctar also known as Savage. I’m a fullstack software engineer with over 6+ years of experience. I build both web, and mobile applications with focus on the achitecture of how every systems works, and are developed for better user and developer experience.
         </p>

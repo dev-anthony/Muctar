@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -7,7 +6,7 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className='max-w-2xl mx-auto p-6 mt-6'>
+    <div className='max-w-2xl mx-auto p-6 min-h-screen flex flex-col'>
       <Header />
       <Hero/>
       <About/>

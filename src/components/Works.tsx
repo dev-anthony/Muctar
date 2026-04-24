@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 interface Project {
   id: number
@@ -33,24 +33,7 @@ interface ProjectItemProps {
 }
 
 function ProjectItem({ project }: ProjectItemProps) {
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (ref.current) observer.observe(ref.current)
-
-    return () => observer.disconnect()
-  }, [])
+  const { ref, isVisible } = useScrollAnimation()
 
   return (
     <div
@@ -75,8 +58,17 @@ function ProjectItem({ project }: ProjectItemProps) {
 }
 
 function Works() {
+  const { ref, isVisible } = useScrollAnimation()
+
   return (
-    <div className='flex-col mt-20 text-left'>
+    <div
+      ref={ref}
+      className={`flex-col mt-20 text-left transition-all duration-700 transform ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8'
+      }`}
+    >
         <h1 className='font-serif italic text-slate-900 text-2xl wavy-underline'>Check out some of my works</h1>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-8'>
           {projects.map((project) => (

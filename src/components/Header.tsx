@@ -1,11 +1,18 @@
-import React from 'react'
 import { ArrowUpRight } from 'lucide-react';
-
-
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 function Header() {
+  const { ref, isVisible } = useScrollAnimation()
+
   return (
-    <div className='flex justify-between items-center '>
+    <div
+      ref={ref}
+      className={`flex justify-between items-center transition-all duration-700 transform ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8'
+      }`}
+    >
         <div className=' rounded-full w-12 h-12 overflow-hidden'>
             <img src="/Savage.jpg" alt="" />
         </div>
