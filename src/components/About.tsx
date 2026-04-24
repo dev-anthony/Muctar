@@ -6,7 +6,7 @@ function About() {
   return (
     <div
       ref={ref}
-      className={`flex-col items-end justify-between mt-4 text-[14px] font-ptserif text-slate-900 gap- transition-all duration-700 transform ${
+      className={`flex-col items-end justify-between mt-4 text-[14px] md:text-[16px] font-ptserif text-slate-900 gap- transition-all duration-700 transform ${
         isVisible
           ? 'opacity-100 translate-y-0'
           : 'opacity-0 translate-y-8'

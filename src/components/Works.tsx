@@ -63,7 +63,7 @@ function Works() {
   return (
     <div
       ref={ref}
-      className={`flex-col mt-20 text-left transition-all duration-700 transform ${
+      className={`flex-col mt-18 text-left transition-all duration-700 transform ${
         isVisible
           ? 'opacity-100 translate-y-0'
           : 'opacity-0 translate-y-8'
