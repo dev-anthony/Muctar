@@ -55,7 +55,7 @@ function ProjectItem({ project }: ProjectItemProps) {
   return (
     <div
       ref={ref}
-      className={`p-4 border border-slate-200 rounded-lg transition-all duration-700 transform ${
+      className={`p-4 border border-slate-200 rounded-lg transition-all duration-700 transform hover:shadow-lg hover:border-slate-400 hover:-translate-y-1 cursor-pointer ${
         isVisible
           ? 'opacity-100 translate-y-0'
           : 'opacity-0 translate-y-8'
